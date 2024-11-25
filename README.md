@@ -9,8 +9,9 @@ DELETE_FOLDERS = False # Delete empty folders
 DELETION_AGE = 172800 # Age of files in seconds that will be deleted (default: 172800s = 48h)
 ```
 
-## Docker compose template:
+## Build instructions:
 
 ```
-
+git clone https://github.com/wolrechris/old_file_delete.git && cd old_file_delete
+sudo docker build -t old-file-delete:v0.3 .
 ```
