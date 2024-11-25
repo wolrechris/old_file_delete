@@ -1,0 +1,11 @@
+services:
+  webserver:
+    container_name: old_file_delete
+    image: old-file-delete:v0.3
+    volumes:
+      - /delete/test:/delete/path1
+      - /delete/test3:/delete/path2
+    environment:
+      DELETE_FOLDERS: True
+      DELETION_AGE: 10
+
