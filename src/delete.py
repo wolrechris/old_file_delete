@@ -7,6 +7,7 @@ DELETION_AGE = 172800 # Age of files in seconds that will be deleted (default: 1
 
 # Configuration
 path = "/delete"
+sleep_time = 900
 dir_names = []
 
 def delete_files(folder, n_seconds, del_dirs):
@@ -72,7 +73,10 @@ else:
     exit(1)
 
 # Run the cleanup function
-for subdir in dir_names:
-    print(f"Iterating through {subdir}...")
-    files_deleted, dirs_deleted = delete_files(subdir, rm_age, rm_dirs)
-    print(f"Deleted {files_deleted} files and {dirs_deleted} directories.")
+while True:
+    for subdir in dir_names:
+        print(f"Iterating through {subdir}...")
+        files_deleted, dirs_deleted = delete_files(subdir, rm_age, rm_dirs)
+        print(f"Deleted {files_deleted} files and {dirs_deleted} directories.")
+    print(f"Sleeping for {sleep_time} seconds...", flush=True)
+    time.sleep(sleep_time)
