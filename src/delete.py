@@ -20,18 +20,26 @@ def delete_files(folder, n_seconds, del_dirs):
             file_path = os.path.join(root, file)
             file_age = now - os.path.getmtime(file_path)
             if file_age > n_seconds:
-                print(f"Deleting file: {file_path} (Age: {file_age/3600:.2f} hours)")
-                os.remove(file_path)
-                files_deleted += 1
+                if not os.path.basename(file_path).startswith('.'):
+                    print(f"Deleting file: {file_path} (Age: {file_age/3600:.2f} hours)")
+                    os.remove(file_path)
+                    files_deleted += 1
+                else:
+                    print(f"Skipping hidden file: {file_path}")
         
         # Optionally delete empty directories
         if del_dirs:
             for dir_name in dirs:
                 dir_path = os.path.join(root, dir_name)
-                if not os.listdir(dir_path):  # Check if the directory is empty
-                    print(f"Deleting empty directory: {dir_path}")
-                    os.rmdir(dir_path)
-                    dirs_deleted += 1
+                if not os.path.basename(dir_path).startswith('.'):
+                    if not os.listdir(dir_path):  # Check if the directory is empty
+                        print(f"Deleting empty directory: {dir_path}")
+                        os.rmdir(dir_path)
+                        dirs_deleted += 1
+                    else:
+                        print(f"Skipping non-empty directory: {dir_path}")
+                else:
+                    print(f"Skipping hidden directory: {dir_path}")
     return files_deleted, dirs_deleted
 
 
