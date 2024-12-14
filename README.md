@@ -9,6 +9,16 @@ DELETE_FOLDERS = False # Delete empty folders
 DELETION_AGE = 172800 # Age of files in seconds that will be deleted (default: 172800s = 48h)
 ```
 
+## How to get
+
+You can simply pull the latest image version from Github:
+
+```
+docker pull ghcr.io/wolrechris/old_file_delete:latest
+```
+
+To find all available version tags, go to the [packages section](https://github.com/wolrechris/old_file_delete/pkgs/container/old_file_delete/versions)
+
 ## Build instructions:
 
 ```
